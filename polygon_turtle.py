@@ -1,9 +1,10 @@
 """
     This module contains code from
-    Think Python by Allen B. Downey
-    http://thinkpython.com
+    Think Python, 2nd Edition
+    by Allen Downey
+    http://thinkpython2.com
 
-    Copyright 2012 Allen B. Downey
+    Copyright 2015 Allen B. Downey
     License: GNU GPLv3 http://www.gnu.org/licenses/gpl.html
 
     Chapter 4: Case Study in Think Python 2
@@ -50,7 +51,6 @@ def polygon(t, n, length):
     angle = 360.0/n
     polyline(t, n, length, angle)
 
-
 def arc(t, r, angle):
     """
         Draws an arc with the given radius and angle.
@@ -64,13 +64,10 @@ def arc(t, r, angle):
     step_length = arc_length / n
     step_angle = float(angle) / n
     polyline(t, n, step_length, step_angle)
-"""
-    # starting with a slight turn before starting reduces  error caused by the linear approximation of the arc
-    t.lt(t, step_angle/2)
-"""
-    
-    # t.rt(t, step_angle/2)
-
+    # making a slight left turn before starting reduces the error caused by the linear approximation of the arc
+    t.lt(step_angle/2)
+    polyline(t, n, step_length, step_angle)
+    t.rt(step_angle/2)
 
 def circle(t, r):
     """
@@ -81,7 +78,7 @@ def circle(t, r):
     """
     arc(t, r, 360)
 
-
+# Instantiate the Turtle
 bob = turtle.Turtle()
 
 """
@@ -91,8 +88,8 @@ polygon(bob, 100, 6)
 polygon(bob, 50, 8)
 polygon(bob, 25, 10)
 circle(bob, 50)
-"""
 circle(bob, 25)
+"""
 arc(bob, 40, 90)
 
 turtle.mainloop()
